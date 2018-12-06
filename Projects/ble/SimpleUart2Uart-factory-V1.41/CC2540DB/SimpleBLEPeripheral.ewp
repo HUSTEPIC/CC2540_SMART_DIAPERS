@@ -298,7 +298,6 @@
           <state>xPLUS_BROADCASTER</state>
           <state>HAL_LED=TRUE</state>
           <state>HAL_LCD=TRUE</state>
-          <state>HAL_KEY=TRUE</state>
           <state>HAL_UART=TRUE</state>
           <state>xLCD_TO_UART</state>
           <state>xAMOMCU_UART_RX_MODE</state>
@@ -1128,6 +1127,9 @@
       <name>$PROJ_DIR$\..\Source\amomcu_buffer.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\Source\main.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\Source\OSAL_simpleBLECentral.c</name>
     </file>
     <file>
@@ -1152,7 +1154,10 @@
       <name>$PROJ_DIR$\..\Source\simpleBLEPeripheral.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\Source\SimpleBLEPeripheral_Main.c</name>
+      <name>$PROJ_DIR$\..\Source\VibrativeSensor.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Source\VibrativeSensor.h</name>
     </file>
   </group>
   <group>

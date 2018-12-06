@@ -7,7 +7,7 @@
 extern "C"
 {
 #endif
-
+#include "hal_types.h"
 
 //写  WrLen 个字节数据到 缓冲区 RdBuf， 返回 true 表示成功， 返回false表示剩余缓冲区放不下这段数据了
 extern bool qq_write(uint8 *WrBuf, unsigned short WrLen);

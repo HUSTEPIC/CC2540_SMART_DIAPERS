@@ -63,6 +63,7 @@
 #include "osal_snv.h"
 #include "OnBoard.h"
 #include "simpleble.h"
+#include "VibrativeSensor.h"
 
 /**************************************************************************************************
  * FUNCTIONS
@@ -91,6 +92,9 @@ int main(void)
 
   /* Initialize NV system */
   osal_snv_init();
+  
+  InitLed();   //设置LED灯相应的IO口
+  InitKey();   //设置S1相应的IO口
 
 #if 1//这一段代码和说明是 amomcu 增加的  
     // 从设置中读出以保存的数据， 以便决定现在应该是跑主机还是从机
@@ -105,35 +109,35 @@ int main(void)
     #define OSAL_NV_PAGE_BEG        HAL_NV_PAGE_BEG
     #define OSAL_NV_PAGE_END       (OSAL_NV_PAGE_BEG + OSAL_NV_PAGES_USED - 1)
     */
-    {
-        int8 ret8 = osal_snv_read(0x80, sizeof(SYS_CONFIG), &sys_config);
-        // 如果该段内存未曾写入过数据， 直接读，会返回 NV_OPER_FAILED ,
-        // 我们利用这个特点作为第一次烧录后的运行， 从而设置参数的出厂设置
-        if(NV_OPER_FAILED == ret8)
-        {
+//    {
+//        int8 ret8 = osal_snv_read(0x80, sizeof(SYS_CONFIG), &sys_config);
+//        // 如果该段内存未曾写入过数据， 直接读，会返回 NV_OPER_FAILED ,
+//        // 我们利用这个特点作为第一次烧录后的运行， 从而设置参数的出厂设置
+//        if(NV_OPER_FAILED == ret8)
+//        {
             simpleBLE_SetAllParaDefault(PARA_ALL_FACTORY);
             simpleBLE_WriteAllDataToFlash();
-        } 
-
-        // 执行  串口初始化
-//        simpleBLE_NPI_init();     
-    }
+//        } 
+//
+//        // 执行  串口初始化
+////        simpleBLE_NPI_init();     
+//    }
 #endif//这一段代码和说明是 amomcu 增加的  
 
   /* Initialize LL */
 
   // 根据S1 按键判断启动从设备或者主设备， 
   // 如果启动期间 S1 按键按下，P0_1==0, 则启动主机
-  if(false == Check_startup_peripheral_or_central())
-  {   
+//  if(false == Check_startup_peripheral_or_central())
+//  {   
     sys_config.role = BLE_ROLE_PERIPHERAL;
     simpleBLE_WriteAllDataToFlash();
-  }
-  else
-  {
-    sys_config.role = BLE_ROLE_CENTRAL;
-    simpleBLE_WriteAllDataToFlash();
-  }
+//  }
+//  else
+//  {
+//    sys_config.role = BLE_ROLE_CENTRAL;
+//    simpleBLE_WriteAllDataToFlash();
+//  }
 
   // 启动串口
   simpleBLE_NPI_init();     
@@ -145,7 +149,8 @@ int main(void)
   HAL_ENABLE_INTERRUPTS();
 
   // Final board initialization
-  InitBoard( OB_READY );
+  //去掉按键功能
+ // InitBoard( OB_READY ); 
 
   #if defined ( POWER_SAVING )
 //    osal_pwrmgr_device( PWRMGR_BATTERY );  
