@@ -74,7 +74,7 @@
  * CONSTANTS
  */
 
-#define SERVAPP_NUM_ATTR_SUPPORTED        21//25
+#define SERVAPP_NUM_ATTR_SUPPORTED        25//21//25
 
 /*********************************************************************
  * TYPEDEFS
@@ -226,7 +226,7 @@ static uint8 simpleProfileChar6UserDesp[17] = "Characteristic 6";
 
 
 // Simple Profile Characteristic 7 Properties
-//static uint8 simpleProfileChar7Props = GATT_PROP_NOTIFY;
+static uint8 simpleProfileChar7Props = GATT_PROP_NOTIFY;
 
 // Characteristic 7 Value
 static uint8 simpleProfileChar7[SIMPLEPROFILE_CHAR7_LEN] = { 0, 0, 0, 0, 0 };
@@ -239,7 +239,7 @@ static uint8 simpleProfileChar7Len = 0;
 static gattCharCfg_t *simpleProfileChar7Config;
 
 // Simple Profile Characteristic 7 User Description
-//static uint8 simpleProfileChar7UserDesp[17] = "Characteristic 7\0";
+static uint8 simpleProfileChar7UserDesp[17] = "Characteristic 7";
 
 /*********************************************************************
  * Profile Attributes - Table
@@ -414,7 +414,7 @@ static gattAttribute_t simpleProfileAttrTbl[SERVAPP_NUM_ATTR_SUPPORTED] =
         0, 
         simpleProfileChar6UserDesp 
       },
-#if 0      
+#if 1      
       // Characteristic 7 Declaration
     { 
       { ATT_BT_UUID_SIZE, characterUUID },
@@ -436,7 +436,7 @@ static gattAttribute_t simpleProfileAttrTbl[SERVAPP_NUM_ATTR_SUPPORTED] =
         { ATT_BT_UUID_SIZE, clientCharCfgUUID },
         GATT_PERMIT_READ | GATT_PERMIT_WRITE, 
         0, 
-        (uint8 *)simpleProfileChar7Config 
+        (uint8 *)&simpleProfileChar7Config 
       },
       
       // Characteristic 7 User Description
@@ -517,7 +517,7 @@ bStatus_t SimpleProfile_AddService( uint32 services )
   {     
     return ( bleMemAllocError );
   }  
-  //GATTServApp_InitCharCfg( INVALID_CONNHANDLE, simpleProfileChar7Config );
+  GATTServApp_InitCharCfg( INVALID_CONNHANDLE, simpleProfileChar7Config );
 
   
   if ( services & SIMPLEPROFILE_SERVICE )
@@ -830,9 +830,9 @@ static bStatus_t simpleProfile_ReadAttrCB( uint16 connHandle, gattAttribute_t *p
         *pLen = simpleProfileChar7Len;
         VOID osal_memcpy( pValue, pAttr->pValue, simpleProfileChar7Len );
         {
-          // 这个变量用于表明上一次写数据到从机已经成功， 可用于判断写数据时的判断， 以确保数据的完整性
-          //extern bool simpleBLEChar7DoWrite;
-          //simpleBLEChar7DoWrite = TRUE;
+           //这个变量用于表明上一次写数据到从机已经成功， 可用于判断写数据时的判断， 以确保数据的完整性
+          extern bool simpleBLEChar7DoWrite;
+          simpleBLEChar7DoWrite = TRUE;
         }
         break;
         

@@ -86,6 +86,7 @@
 #include "string.h"
 #include "math.h"
 #include "amomcu_buffer.h"
+#include "VibrativeSensor.h"
 
 /*********************************************************************
  * MACROS
@@ -159,6 +160,7 @@
 gaprole_States_t gapProfileState = GAPROLE_INIT;
 
 bool simpleBLEChar6DoWrite2 = TRUE;
+bool simpleBLEChar7DoWrite = TRUE;
 bool timerIsOn = FALSE;          // 
 
 // Connection handle
@@ -724,6 +726,60 @@ uint16 SimpleBLEPeripheral_ProcessEvent( uint8 task_id, uint16 events )
 #endif
       return ( events ^ SBP_DATA_EVT );
   }
+  
+#if 0  
+  if ( events & SBP_VABRATIVE_EVT)
+  { 
+//    uint8 send_count = 3;
+//    while(send_count--)
+//    {
+//        uint16 totalbytes = qq_total();
+//        uint8 numBytes;    
+//
+////        totalbytes = 20;
+//        
+//          // 读  RdLen 个字节数据到 缓冲区 RdBuf， 返回读取到的有效数据长度
+//        if(totalbytes > 0 &&  simpleBLEChar7DoWrite)
+//        {            
+//
+            if(simpleBLEChar7DoWrite)               //写入成功后再写入
+            {     
+                attHandleValueNoti_t pReport;
+                pReport.pValue = GATT_bm_alloc( gapConnHandle, ATT_WRITE_REQ, 1, NULL );
+//                if(pReport.pValue != NULL)
+//                {
+                    pReport.len = 1;
+                    pReport.handle = 0x0035;
+                    
+                    pReport.pValue=&vibra_value;//, pReport.len);
+                    
+                    GATT_Notification(gapConnHandle, &pReport, FALSE );            
+//                }
+            }
+//            else
+//            {
+//                LCD_WRITE_STRING_VALUE( "line=", __LINE__, 10, HAL_LCD_LINE_1 );
+//            }   
+//          }
+//          else
+//          {
+//                break;
+//          }
+//      } 
+//    
+//      if(qq_total() > 0)
+//      {
+//         timerIsOn = TRUE;
+//         osal_start_timerEx( simpleBLETaskId, SBP_VABRATIVE_EVT, 6);
+////         osal_start_timerEx( simpleBLETaskId, SBP_DATA_EVT, 16);
+//      }
+//      else
+//      {
+//         timerIsOn = FALSE;
+//      }
+      return ( events ^ SBP_VABRATIVE_EVT );
+  }
+#endif
 
   if ( events & SBP_UART_EVT )
   {      

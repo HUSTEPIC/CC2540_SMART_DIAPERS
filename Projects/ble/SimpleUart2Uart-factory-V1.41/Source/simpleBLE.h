@@ -11,6 +11,7 @@ extern "C"
 #define START_DEVICE_EVT                               0x0001//启动设备
 #define SBP_PERIODIC_EVT                                0x0002//系统轮询定时器
 #define SBP_DATA_EVT                                   0x0004//数据传输
+#define SBP_VABRATIVE_EVT                              0x0008//震动器中断事件
 #define SBP_UART_EVT                                   0x0010//串口数据事件
 #define SBP_SLEEP_EVT                                  0x0020//睡眠事件
 #define SBP_WAKE_EVT                                   0x0040//唤醒事件
@@ -178,6 +179,7 @@ extern uint16 simpleBLECharHdl;
 extern uint16 simpleBLECharHd6;
 extern bool simpleBLEChar6DoWrite;
 extern bool simpleBLEChar6DoWrite2;
+extern bool simpleBLEChar7DoWrite;
 
 
 #if defined (RELEASE_VER)

@@ -64,6 +64,7 @@
 #include "OnBoard.h"
 #include "simpleble.h"
 #include "VibrativeSensor.h"
+#include "DHT11.H" 
 
 /**************************************************************************************************
  * FUNCTIONS
@@ -95,7 +96,7 @@ int main(void)
   
   InitLed();   //设置LED灯相应的IO口
   InitKey();   //设置S1相应的IO口
-
+  
 #if 1//这一段代码和说明是 amomcu 增加的  
     // 从设置中读出以保存的数据， 以便决定现在应该是跑主机还是从机
     // 注意， 这里用到了 osal_snv_xxx ， 数据是存在flash里边的， 大家可以找找相关代码和说明

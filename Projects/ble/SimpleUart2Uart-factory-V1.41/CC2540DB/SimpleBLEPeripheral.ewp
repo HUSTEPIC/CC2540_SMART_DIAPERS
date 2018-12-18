@@ -1127,6 +1127,18 @@
       <name>$PROJ_DIR$\..\Source\amomcu_buffer.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\Source\DHT11.C</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Source\DHT11.H</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Source\iic.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Source\iic.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\Source\main.c</name>
     </file>
     <file>
@@ -1136,10 +1148,16 @@
       <name>$PROJ_DIR$\..\Source\OSAL_SimpleBLEPeripheral.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\Source\sht3x.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Source\sht3x.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\Source\simpleBLE.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\Source\simpleble.h</name>
+      <name>$PROJ_DIR$\..\Source\simpleBLE.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\Source\simpleBLECentral.c</name>

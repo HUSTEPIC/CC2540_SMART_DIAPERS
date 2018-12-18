@@ -21,6 +21,8 @@
 typedef unsigned char uchar;
 typedef unsigned int  uint;
 
+uint8 vibra_value[2]={0};
+
 #define LED1 P1_0       // P1.0口控制LED1
 #define LED2 P1_1       // P1.1口控制LED2
 #define KEY1 P0_1       // P0.1口控制S1
@@ -67,6 +69,13 @@ void InitKey(void)
     EA = 1;          //打开总中断
 }
 
+
+
+//void clear_vibra(void)
+//{
+//    vibra_value=0;
+//}
+
 /****************************************************************************
 * 名    称: P0_ISR(void) 中断处理函数 
 * 描    述: #pragma vector = 中断向量，紧接着是中断处理程序
@@ -74,29 +83,22 @@ void InitKey(void)
 #pragma vector = P0INT_VECTOR    
 
 __interrupt void P0_ISR(void) 
-{ 
-    uint8 buffer = 1;
-    uint8 sendBytes=sizeof(uint8);
-    qq_write(&buffer, sendBytes);
-    
+{     
     // 启动事件，然后在事件中再启动定时器定时检测数据并发送到网络
-    //osal_set_event( simpleBLETaskId, SBP_UART_EVT );     
+    vibra_value[0]=0xFF;
+    vibra_value[1]=0xFF;
+    qq_write(vibra_value,2);
+    
+//    osal_set_event(simpleBLETaskId, SBP_VABRATIVE_EVT);  
     osal_set_event(simpleBLETaskId, SBP_DATA_EVT); 
     //osal_mem_free(&buffer);
-    
+//    clear_vibra();
     //DelayMS(10);     //延时去抖（此处加上延时会造成蓝牙连接的不稳定）
     LED2 = ~LED2;    //改变LED2状态
     P0IFG = 0;       //清中断标志 
     P0IF = 0;        //清中断标志 
 } 
 
-/****************************************************************************
-* 程序入口函数
-****************************************************************************/
-void mainll(void)
-{
-    
-    while(1)
-    {
-    }
-}
+
+
+

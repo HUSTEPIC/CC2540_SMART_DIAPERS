@@ -25,6 +25,8 @@
 #include "stdlib.h"
 #include "string.h"
 #include "math.h"
+#include "VibrativeSensor.h"
+#include "DHT11.h"
 
 #if 1
 SYS_CONFIG sys_config;
@@ -668,6 +670,7 @@ void simpleBLE_performPeriodicTask( void )
     }
     else// 连接后 主机与从机均为，LED每5秒亮100毫秒。(如果想省电， 可以不点灯)
     {
+        
         if(count == 0)
         {
             simpleBle_LedSetState(HAL_LED_MODE_ON);  
@@ -679,7 +682,7 @@ void simpleBLE_performPeriodicTask( void )
         count++;
         count %= 50; 
 
-        // 发送自己的自定义数据， 实现自动数据串口透传
+        // 隔1min发送一次温湿度值
         simpleBLE_SendMyData_ForTest();
     }
 }
@@ -1614,6 +1617,47 @@ NEXT_ADC:
 */
 void simpleBLE_SendMyData_ForTest()
 {
+    uint8 buffer[2] = {0};
+    
+    static uint16 count_100ms = 0;
+    count_100ms++;
+    
+    if(count_100ms >= 600){//60s 
+        
+    DHT11();           //获取温湿度
+
+    //将温湿度的转换成字符串
+//    temp[0]=wendu_shi+0x30;
+//    temp[1]=wendu_ge+0x30;
+//    humidity[0]=shidu_shi+0x30;
+//    humidity[1]=shidu_ge+0x30;
+        
+    //获得的温湿度通过串口输出到电脑显示
+//    UartSendString(strTemp, 12);
+//    UartSendString(temp, 2);
+//    UartSendString("   ", 3);
+//    
+//    UartSendString(strHumidity, 9);
+//    UartSendString(humidity, 2);
+//    UartSendString("\n", 1);
+    
+    buffer[0]=wendu_shi;
+    buffer[1]=shidu_shi;
+    
+    
+    qq_write(buffer, 2);
+    //qq_write(strTemp, 12);
+    //qq_write(temp, 2);
+    
+    //qq_write(strHumidity, 9);
+    //qq_write(humidity, 2);
+    
+    osal_set_event(simpleBLETaskId, SBP_DATA_EVT); 
+    count_100ms=0;
+    }
+    
+  
+  
 #if 0  
     static uint8 count_100ms = 0;
     uint8 numBytes;

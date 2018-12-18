@@ -88,7 +88,7 @@ extern "C"
 // Length of Characteristic 5 in bytes
 #define SIMPLEPROFILE_CHAR5_LEN          5
 #define SIMPLEPROFILE_CHAR6_LEN          20    //主机读写 (理应最大可设成20， 但不知为何目前只能最大设成19 --amomcu)
-#define SIMPLEPROFILE_CHAR7_LEN          SIMPLEPROFILE_CHAR6_LEN    //从机通知, 这里不需要用到
+#define SIMPLEPROFILE_CHAR7_LEN          20    //从机通知, 这里不需要用到
   
 /********************************************************************* 
  * TYPEDEFS
