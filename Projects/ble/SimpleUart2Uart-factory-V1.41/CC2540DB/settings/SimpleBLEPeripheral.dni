@@ -14,11 +14,6 @@ Checksum=356799298
 ShowArgs=0
 [Disassembly]
 MixedMode=1
-[Breakpoints]
-Count=0
-[ChipconEmu]
-Stop timers on halt=0
-Leave target running=1
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -26,6 +21,11 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
+[Breakpoints]
+Count=0
+[ChipconEmu]
+Stop timers on halt=0
+Leave target running=1
 [Aliases]
 A0=_ "D:\GitRepo\diaper_cc2540\Components\hal\target\CC2540EB\hal_startup.c" ""
 A1=_ "D:\GitRepo\diaper_cc2540\Components\osal\common\OSAL.c" ""
