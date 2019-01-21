@@ -292,17 +292,10 @@
           <state>INT_HEAP_LEN=1800</state>
           <state>HALNODEBUG</state>
           <state>OSAL_CBTIMER_NUM_TASKS=1</state>
-          <state>HAL_AES_DMA=TRUE</state>
-          <state>HAL_DMA=TRUE</state>
           <state>POWER_SAVING</state>
           <state>xPLUS_BROADCASTER</state>
           <state>HAL_LED=TRUE</state>
-          <state>HAL_LCD=TRUE</state>
-          <state>HAL_UART=TRUE</state>
-          <state>xLCD_TO_UART</state>
-          <state>xAMOMCU_UART_RX_MODE</state>
           <state>xUSE_P20_LED1</state>
-          <state>USE_DISPLAY_KEY_VALUE</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -1157,7 +1150,7 @@
       <name>$PROJ_DIR$\..\Source\simpleBLE.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\Source\simpleBLE.h</name>
+      <name>$PROJ_DIR$\..\Source\simpleble.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\Source\simpleBLECentral.c</name>

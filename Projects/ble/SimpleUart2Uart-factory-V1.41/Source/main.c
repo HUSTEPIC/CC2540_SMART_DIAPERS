@@ -141,7 +141,7 @@ int main(void)
 //  }
 
   // Æô¶¯´®¿Ú
-  simpleBLE_NPI_init();     
+ // simpleBLE_NPI_init();     
 
   /* Initialize the operating system */
   osal_init_system(sys_config.role);

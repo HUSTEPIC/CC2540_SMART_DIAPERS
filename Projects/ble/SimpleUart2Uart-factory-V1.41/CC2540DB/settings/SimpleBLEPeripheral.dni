@@ -9,11 +9,18 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=356799298
+Checksum=73350063
 [CallStack]
 ShowArgs=0
 [Disassembly]
 MixedMode=1
+[Breakpoints]
+Bp0=_ "STD_CODE" "LogicalCode:0x27F8" 1 0 0 0 "" 0 ""
+Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\Source\main.c}.119.13" 1 0 0 0 "" 0 ""
+Count=2
+[ChipconEmu]
+Stop timers on halt=0
+Leave target running=1
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -21,11 +28,6 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
-[Breakpoints]
-Count=0
-[ChipconEmu]
-Stop timers on halt=0
-Leave target running=1
 [Aliases]
 A0=_ "D:\GitRepo\diaper_cc2540\Components\hal\target\CC2540EB\hal_startup.c" ""
 A1=_ "D:\GitRepo\diaper_cc2540\Components\osal\common\OSAL.c" ""

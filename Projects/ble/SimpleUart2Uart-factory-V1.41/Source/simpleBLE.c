@@ -1622,7 +1622,7 @@ void simpleBLE_SendMyData_ForTest()
     static uint16 count_100ms = 0;
     count_100ms++;
     
-    if(count_100ms >= 600){//60s 
+    if(count_100ms >= 20){//600-60s 
         
     DHT11();           //»ñÈ¡ÎÂÊª¶È
 
